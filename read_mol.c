@@ -14,7 +14,6 @@ int main(int argc, char *argv[])
 {
     int atomNum, bondNum;
     atomNum = bondNum = 0;
-    int i;
     char *buffer;
     asprintf(&buffer, "# MSI CERIUS2 DataModel File Version 4.0\n(%d Model\n",
              itemId);
