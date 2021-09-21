@@ -21,6 +21,6 @@ typedef struct
 CHAR_ARRAY returnLines(FILE *filepointer);
 ATOM_BLOCK build_atom(char s[], int id);
 BOND_BLOCK build_bond(char s[], int id);
-void output_msi(char fileName[], CHAR_ARRAY toWrite, int lines);
+void output_msi(char *fileName, CHAR_ARRAY toWrite, int lines);
 int collect_atoms(int atomNum);
 int collect_bonds(int bondNum);

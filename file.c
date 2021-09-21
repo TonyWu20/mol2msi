@@ -27,21 +27,22 @@ CHAR_ARRAY returnLines(FILE *file)
     return returned;
 }
 
-void output_msi(char fileName[], CHAR_ARRAY toWrite, int lines)
+void output_msi(char *fileName, CHAR_ARRAY toWrite, int lines)
 {
     int i;
-    char *fileStem;
+    /*char *fileStem;*/
     FILE *fp;
 
     char *temp = malloc(strlen(fileName) + 1);
     strcpy(temp, fileName);
-    fileStem = strtok(temp, ".");
-    strcat(fileStem, ".msi");
+    strtok(temp, ".");
+    strcat(temp, ".msi");
+    printf("temp now is: %s\n", temp);
     free(temp);
-
-    fp = fopen(fileStem, "w");
+    fp = fopen(temp, "w");
     for (i = 0; i <= lines; ++i)
     {
         fputs(toWrite.v[i], fp);
     }
+    fclose(fp);
 }
