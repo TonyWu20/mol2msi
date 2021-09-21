@@ -37,7 +37,6 @@ void output_msi(char *fileName, CHAR_ARRAY toWrite, int lines)
     strcpy(temp, fileName);
     strtok(temp, ".");
     strcat(temp, ".msi");
-    printf("temp now is: %s\n", temp);
     free(temp);
     fp = fopen(temp, "w");
     for (i = 0; i <= lines; ++i)
