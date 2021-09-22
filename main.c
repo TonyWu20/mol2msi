@@ -41,7 +41,7 @@ int main(int argc, char *argv[])
     /* scanLineID begins from 4 */
     collect_atoms(atomNum);
     collect_bonds(bondNum);
-    resArray[++itemId] = strdup(")\0");
+    resArray[itemId] = strdup(")\0");
     output_msi(fileName, resArray, itemId);
     printf("done!");
     return 0;
