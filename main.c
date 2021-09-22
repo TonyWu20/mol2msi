@@ -5,19 +5,20 @@
 #include <stdlib.h>
 #include <string.h>
 
-CHAR_ARRAY strArray;
-CHAR_ARRAY resArray;
-int itemId = 1;
+char *strArray[MAXLINE];
+char *resArray[MAXLINE];
+int itemId = 0;
 int scanLineID = 3;
 
 int main(int argc, char *argv[])
 {
+    printf("Parsing begins\n");
     int atomNum, bondNum;
     atomNum = bondNum = 0;
     char *buffer;
     asprintf(&buffer, "# MSI CERIUS2 DataModel File Version 4.0\n(%d Model\n",
              itemId);
-    strcpy(resArray.v[0], buffer);
+    resArray[itemId++] = strdup(buffer);
     /* read file */
     char *fileName = argv[1];
 
@@ -29,18 +30,19 @@ int main(int argc, char *argv[])
     }
     else
     {
-        strArray = returnLines(file);
+        returnLines(strArray, file);
     }
     /* Scan the 3rd line of .mol, to get numbers of atoms and bonds, and
      * increase scanLineID by 1 */
-    sscanf(strArray.v[scanLineID++], "%d %d", &atomNum, &bondNum);
-    printf("Number of atoms:%d\nNumber of bonds:%d\n", atomNum, bondNum);
+    sscanf(strArray[scanLineID++], "%d %d", &atomNum, &bondNum);
+    printf("Number of atoms:%d, Number of bonds:%d\n", atomNum, bondNum);
 
     /* Get atoms x, y, z and element, format into .msi */
     /* scanLineID begins from 4 */
     collect_atoms(atomNum);
     collect_bonds(bondNum);
-    strcpy(resArray.v[++itemId], ")\0");
+    resArray[++itemId] = strdup(")\0");
     output_msi(fileName, resArray, itemId);
+    printf("done!");
     return 0;
 }

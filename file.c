@@ -3,9 +3,8 @@
 #include <stdlib.h>
 #include <string.h>
 
-CHAR_ARRAY returnLines(FILE *file)
+int returnLines(char *lineptr[], FILE *file)
 {
-    CHAR_ARRAY returned;
     char *line = NULL; /* line array */
     size_t len = 0;
     ssize_t read;
@@ -16,18 +15,12 @@ CHAR_ARRAY returnLines(FILE *file)
            -1) /* loop thru lines and add them to strArray */
     {
         /* fgets(line, 100, file) */
-        int i = 0;
-        while (line[i] != '\n')
-        {
-            returned.v[counter][i] = line[i];
-            i++;
-        }
-        counter++;
+        lineptr[counter++] = strdup(line);
     }
-    return returned;
+    return counter;
 }
 
-void output_msi(char *fileName, CHAR_ARRAY toWrite, int lines)
+void output_msi(char *fileName, char *toWrite[], int lines)
 {
     int i;
     /*char *fileStem;*/
@@ -41,7 +34,7 @@ void output_msi(char *fileName, CHAR_ARRAY toWrite, int lines)
     fp = fopen(temp, "w");
     for (i = 0; i <= lines; ++i)
     {
-        fputs(toWrite.v[i], fp);
+        fputs(toWrite[i], fp);
     }
     fclose(fp);
 }

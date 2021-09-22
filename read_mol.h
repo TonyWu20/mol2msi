@@ -1,8 +1,5 @@
 #include <stdio.h>
-typedef struct
-{
-    char v[150][500];
-} CHAR_ARRAY;
+#define MAXLINE 80
 typedef struct
 {
     float x, y, z;
@@ -18,9 +15,10 @@ typedef struct
     char text[120];
 } BOND_BLOCK;
 
-CHAR_ARRAY returnLines(FILE *filepointer);
+//CHAR_ARRAY returnLines(FILE *filepointer);
+int returnLines(char *lineptr[], FILE *filepointer);
 ATOM_BLOCK build_atom(char s[], int id);
 BOND_BLOCK build_bond(char s[], int id);
-void output_msi(char *fileName, CHAR_ARRAY toWrite, int lines);
+void output_msi(char *fileName, char *toWrite[], int lines);
 int collect_atoms(int atomNum);
 int collect_bonds(int bondNum);

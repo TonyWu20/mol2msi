@@ -42,16 +42,16 @@ BOND_BLOCK build_bond(char line[], int id)
 int collect_atoms(int atomNum)
 {
     int i, j;
-    extern CHAR_ARRAY strArray;
-    extern CHAR_ARRAY resArray;
+    extern char *strArray[MAXLINE];
+    extern char *resArray[MAXLINE];
     extern int scanLineID;
     extern int itemId;
     j = itemId;
     for (i = 0; i < atomNum; i++)
     {
         ATOM_BLOCK atom;
-        atom = build_atom(strArray.v[scanLineID++], ++itemId);
-        strcpy(resArray.v[j++], atom.text);
+        atom = build_atom(strArray[scanLineID++], ++itemId);
+        resArray[j++] = strdup(atom.text);
     }
     if (i > 0)
         return i;
@@ -64,16 +64,16 @@ int collect_atoms(int atomNum)
 int collect_bonds(int bondNum)
 {
     int i, j;
-    extern CHAR_ARRAY strArray;
-    extern CHAR_ARRAY resArray;
+    extern char *strArray[MAXLINE];
+    extern char *resArray[MAXLINE];
     extern int scanLineID;
     extern int itemId;
     j = itemId;
     for (i = 0; i < bondNum; i++)
     {
         BOND_BLOCK bond;
-        bond = build_bond(strArray.v[scanLineID++], ++itemId);
-        strcpy(resArray.v[j++], bond.text);
+        bond = build_bond(strArray[scanLineID++], ++itemId);
+        resArray[j++] = strdup(bond.text);
     }
     if (i > 0)
         return i;
