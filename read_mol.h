@@ -16,9 +16,10 @@ typedef struct
 } BOND_BLOCK;
 
 //CHAR_ARRAY returnLines(FILE *filepointer);
+long int countLines(FILE *file);
 int returnLines(char *lineptr[], FILE *filepointer);
 ATOM_BLOCK build_atom(char s[], int id);
 BOND_BLOCK build_bond(char s[], int id);
 void output_msi(char *fileName, char *toWrite[], int lines);
-int collect_atoms(int atomNum);
-int collect_bonds(int bondNum);
+int collect_atoms(int atomNum, char *s[], char *res[]);
+int collect_bonds(int bondNum, char *s[], char *res[]);

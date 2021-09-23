@@ -3,6 +3,15 @@
 #include <stdlib.h>
 #include <string.h>
 
+long int countLines(FILE *file)
+{
+    long int lines = 0;
+    while (EOF != (fscanf(file, "%*[^\n]"), fscanf(file, "%*c")))
+        ++lines;
+    rewind(file);
+    return lines;
+}
+
 int returnLines(char *lineptr[], FILE *file)
 {
     char *line = NULL; /* line array */
