@@ -40,7 +40,7 @@ int main(int argc, char *argv[])
         char *resArray[resItemNum];
         asprintf(&buffer,
                  "# MSI CERIUS2 DataModel File Version 4.0\n(%d Model\n",
-                 itemId);
+                 itemId + 1);
         resArray[itemId++] = strdup(buffer);
         /* Get atoms x, y, z and element, format into .msi */
         /* scanLineID begins from 4 */
