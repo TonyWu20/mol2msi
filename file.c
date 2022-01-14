@@ -39,11 +39,11 @@ void output_msi(char *fileName, char *toWrite[], int lines)
     strcpy(temp, fileName);
     strtok(temp, ".");
     strcat(temp, ".msi");
-    free(temp);
     fp = fopen(temp, "w");
     for (i = 0; i <= lines; ++i)
     {
         fputs(toWrite[i], fp);
     }
+    free(temp);
     fclose(fp);
 }
